@@ -1,0 +1,1 @@
+To get started, move the SFML-2.5.1 folder to C:/SFML-2.5.1
