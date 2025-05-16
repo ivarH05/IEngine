@@ -1,5 +1,5 @@
 #pragma once
-#include "Object.h"
+#include "RuntimeObject.h"
 #include "Component.h"
 #include <vector>
 #include <memory>
@@ -9,7 +9,7 @@ namespace IEngine
 	namespace Core
 	{
 		class GameObject :
-			public Object
+			public RuntimeObject
 		{
 		public:
 			template<typename T>

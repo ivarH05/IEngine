@@ -1,12 +1,12 @@
 #pragma once
-#include "Object.h"
+#include "RuntimeObject.h"
 
 namespace IEngine
 {
 	namespace Core
 	{
 		class Component :
-			public Object
+			public RuntimeObject
 		{
 		};
 	}
