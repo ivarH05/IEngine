@@ -20,6 +20,9 @@
     <Filter Include="IEngine\SceneManagement">
       <UniqueIdentifier>{2bdc7c68-02d4-424a-b2b6-aa8176f3092d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="IEngine\Memory">
+      <UniqueIdentifier>{8f0c1789-aeb6-4e6e-8c7c-a7648d2e35fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -43,6 +46,15 @@
     <ClCompile Include="Main.h">
       <Filter>IEngine</Filter>
     </ClCompile>
+    <ClCompile Include="RuntimeObject.cpp">
+      <Filter>IEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Pointer.h">
+      <Filter>IEngine\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>IEngine\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Object.h">
@@ -59,6 +71,12 @@
     </ClInclude>
     <ClInclude Include="Component.h">
       <Filter>IEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="RuntimeObject.h">
+      <Filter>IEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="PointerControlBlock.h">
+      <Filter>IEngine\Memory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

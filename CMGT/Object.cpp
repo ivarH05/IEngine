@@ -1,22 +1,19 @@
 #pragma once
-#include "Object.h"
-#include "Scene.h"
-using namespace IEngine::Core;
 
-Object* Object::operator->()
-{
-    if (_isDestroyed)
-        return nullptr;
-    return this;
-}
-
+#include "Pointer.h"
+#include "Application.h"
 
 void Object::Destroy()
 {
-    _isDestroyed = true;
+    OnDestroy();
+
+    if (_controlBlock)
+        _controlBlock->OnObjectDestroyed();
+
+    delete this;
 }
 
-void Object::Destroy(std::shared_ptr<Object> other)
+void Object::Destroy(Pointer<Object> other)
 {
-    scene->QueueNewDestructable(other);
+    Application::QueueNewDestructable(other);
 }
