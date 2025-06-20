@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Object.h"
+#include "GameObject.h"
 
-class Scene : public Object
+class Scene : public GameObject
 {
 private:
 
@@ -11,5 +11,7 @@ public:
 	/// Scene contains the main loop of the engine. run will update, render, clean up, etc. 
 	/// </summary>
 	void run();
+
+	Scene();
 };
 

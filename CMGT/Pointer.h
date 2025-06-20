@@ -100,6 +100,11 @@ public:
         return _controlBlock == other._controlBlock;
     }
 
+    T* Get() const
+    {
+        return (_controlBlock) ? _controlBlock->object : nullptr;
+    }
+
     explicit operator bool() const
     {
         return _controlBlock && _controlBlock->object;

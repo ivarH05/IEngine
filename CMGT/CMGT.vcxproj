@@ -22,10 +22,11 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="MyScript.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="PointerControlBlock.h" />
-    <ClInclude Include="RuntimeObject.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="ObjectHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
@@ -34,10 +35,11 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Graphics.h" />
+    <ClCompile Include="MyScript.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Pointer.h" />
-    <ClCompile Include="RuntimeObject.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="ObjectHandler.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

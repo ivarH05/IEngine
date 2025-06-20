@@ -1,19 +1,27 @@
 #pragma once
 
-#include "RuntimeObject.h"
+#include "Object.h"
 #include "Component.h"
 #include <vector>
-#include <memory>
+#include "Pointer.h"
+#include "ObjectHandler.h"
+
 
 class GameObject :
-	public RuntimeObject
+	public Object
 {
+private:
+	std::vector<Pointer<Component>> _components;
+
+protected:
+	Pointer<ObjectHandler> handler;
+
 public:
 	template<typename T>
 	void AddComponent()
 	{
 		static_assert(std::is_base_of<Component, T>::value, "T must derive from Component");
-		Component component = std::shared_ptr<Component>;
+		Component component = Pointer<Component>;
 		_components.push_back(component);
 	}
 
@@ -22,8 +30,8 @@ public:
 	{
 		for (int i = 0; i < _components.size; i++)
 		{
-			std::shared_ptr<Component> c = _components[i];
-			T* casted = dynamic_cast<T*>(c.get());
+			Pointer<Component> c = _components[i];
+			T* casted = dynamic_cast<T*>(c.Get());
 			if (casted != nullptr)
 				return casted;
 		}
@@ -36,14 +44,11 @@ public:
 		std::vector<Component> result = new std::vector<Component>();
 		for (int i = 0; i < _components.size; i++)
 		{
-			std::shared_ptr<Component> c = _components[i];
-			T* casted = dynamic_cast<T*>(c.get());
+			Pointer<Component> c = _components[i];
+			T* casted = dynamic_cast<T*>(c.Get());
 			if (casted != nullptr)
 				result.push_back(c);
 		}
 		return result;
 	}
-
-private:
-	std::vector<std::shared_ptr<Component>> _components;
 };

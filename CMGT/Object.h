@@ -1,8 +1,6 @@
 #pragma once
 
 template<typename T>
-class Pointer;
-template<typename T>
 class ControlBlock;
 
 class Object
@@ -18,8 +16,10 @@ private:
     /// </summary>
     ControlBlock<Object>* _controlBlock = nullptr;
 
-    // Friend the Scene class to allow it to get the ref_count
-    friend class Pointer<Object>;
+    // Friend the Pointer class to allow it to get the ref_count
+    template<typename T>
+    friend class Pointer;
+
     // Friend the Scene class to allow it to call Destroy()
     friend class Application;
 

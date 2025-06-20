@@ -1,9 +1,9 @@
 #pragma once
 
-#include "RuntimeObject.h"
+#include "Object.h"
 
 class Component :
-	public RuntimeObject
+	public Object
 {
 };
 
