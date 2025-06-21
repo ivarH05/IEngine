@@ -34,9 +34,6 @@
     <ClCompile Include="Main.h">
       <Filter>IEngine</Filter>
     </ClCompile>
-    <ClCompile Include="RuntimeObject.cpp">
-      <Filter>IEngine\Core</Filter>
-    </ClCompile>
     <ClCompile Include="Pointer.h">
       <Filter>IEngine\Memory</Filter>
     </ClCompile>
@@ -52,6 +49,7 @@
     <ClCompile Include="Scene.cpp">
       <Filter>IEngine\SceneManagement</Filter>
     </ClCompile>
+    <ClCompile Include="ObjectHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Object.h">
@@ -66,14 +64,15 @@
     <ClInclude Include="Component.h">
       <Filter>IEngine\Core</Filter>
     </ClInclude>
-    <ClInclude Include="RuntimeObject.h">
-      <Filter>IEngine\Core</Filter>
-    </ClInclude>
     <ClInclude Include="PointerControlBlock.h">
       <Filter>IEngine\Memory</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>IEngine\SceneManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectHandler.h" />
+    <ClInclude Include="Event.h">
+      <Filter>IEngine\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -24,9 +24,4 @@ public:
     {
         object = nullptr;
     }
-
-    ~ControlBlock()
-    {
-        delete object; // only if not already destroyed
-    }
 };

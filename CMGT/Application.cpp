@@ -24,7 +24,7 @@ void Application::DestroyPendingObjects()
 {
     for (const Pointer<Object> obj : _deferredDestructionQueue)
         if (obj)
-            obj->Destroy();
+            obj->FinalizeDestruction();
 
     _deferredDestructionQueue.clear();
 }

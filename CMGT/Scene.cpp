@@ -6,16 +6,16 @@
 
 Scene::Scene()
 {
-    handler = Pointer<ObjectHandler>();
+    objectHandler = Pointer<ObjectHandler>();
 }
 
 void Scene::run()
 {
-    handler->StartAll();
-    handler->FixedUpdateAll();
-    handler->UpdateAll();
-    handler->LateUpdateAll();
-    handler->DrawGizmosAll();
+    objectHandler->StartAll();
+    objectHandler->FixedUpdateAll();
+    objectHandler->UpdateAll();
+    objectHandler->LateUpdateAll();
+    objectHandler->DrawGizmosAll();
 
     // After full update, destroy all objects
     Application::DestroyPendingObjects();

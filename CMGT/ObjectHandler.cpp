@@ -1,27 +1,26 @@
-// update/UpdateManager.cpp
 #include "ObjectHandler.h"
 
 void ObjectHandler::StartAll()
 {
-    for (auto& f : startMethods) f();
+    onStart.Invoke();
 }
 
 void ObjectHandler::FixedUpdateAll()
 {
-    for (auto& f : fixedUpdateMethods) f();
+    onFixedUpdate.Invoke();
 }
 
 void ObjectHandler::UpdateAll()
 {
-    for (auto& f : updateMethods) f();
+    onUpdate.Invoke();
 }
 
 void ObjectHandler::LateUpdateAll()
 {
-    for (auto& f : lateUpdateMethods) f();
+    onLateUpdate.Invoke();
 }
 
 void ObjectHandler::DrawGizmosAll()
 {
-    for (auto& f : drawGizmosMethods) f();
+    onDrawGizmos.Invoke();
 }

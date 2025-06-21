@@ -1,19 +1,21 @@
 #pragma once
 
+#include "Object.h"
 #include "Pointer.h"
 #include "Application.h"
 
-void Object::Destroy()
-{
-    OnDestroy();
+#include <iostream>
 
+void Object::FinalizeDestruction()
+{
+    OnFinalizeDestruction();
     if (_controlBlock)
         _controlBlock->OnObjectDestroyed();
 
     delete this;
 }
 
-void Object::Destroy(Pointer<Object> other)
+void Object::CueForDestruction()
 {
-    Application::QueueNewDestructable(other);
+    Application::QueueNewDestructable(Pointer<Object>(this));
 }

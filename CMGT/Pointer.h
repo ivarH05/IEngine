@@ -3,10 +3,8 @@
 #include <type_traits>
 #include <stdexcept>
 #include "PointerControlBlock.h"
-#include "Object.h"
 
-#include <string>
-#include <sstream>
+class Object;
 
 template<typename T>
 class Pointer
@@ -30,7 +28,7 @@ public:
         if (!p)
             return;
 
-        if (p->_controlBlock)
+        if (!p->_controlBlock)
         {
             _controlBlock = new ControlBlock<T>(p);
             p->_controlBlock = reinterpret_cast<ControlBlock<Object>*>(_controlBlock);
@@ -38,6 +36,7 @@ public:
         else
         {
             _controlBlock = p->_controlBlock;
+            _controlBlock->AddRef();
         }
     }
 

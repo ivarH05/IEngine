@@ -13,8 +13,18 @@ class GameObject :
 private:
 	std::vector<Pointer<Component>> _components;
 
+	void OnFinalizeDestruction() final override
+	{
+		for (int i = 0; i < _components.size(); i++)
+		{
+			Pointer<Component> component = _components[i];
+			DestroyImmediate(component);
+			component->Unregister(objectHandler.Get());
+		}
+	}
+
 protected:
-	Pointer<ObjectHandler> handler;
+	Pointer<ObjectHandler> objectHandler;
 
 public:
 	template<typename T>
@@ -23,6 +33,11 @@ public:
 		static_assert(std::is_base_of<Component, T>::value, "T must derive from Component");
 		Component component = Pointer<Component>;
 		_components.push_back(component);
+
+		component->Register(objectHandler.Get());
+
+		if constexpr (has_Awake<T>::value)
+			component->Awake();
 	}
 
 	template<typename T>
