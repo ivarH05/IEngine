@@ -22,7 +22,6 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="MyScript.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="PointerControlBlock.h" />
     <ClInclude Include="Scene.h" />
@@ -35,7 +34,6 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Graphics.h" />
-    <ClCompile Include="MyScript.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Pointer.h" />
     <ClCompile Include="Scene.cpp" />
