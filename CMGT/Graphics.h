@@ -1,21 +1,16 @@
 #pragma once
+
 #include <iostream>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
-namespace IEngine
+class Graphics
 {
-	namespace Core
+private:
+	static sf::Window _window;
+public:
+	static void Setup()
 	{
-		class Graphics
-		{
-		private:
-			static sf::Window _window;
-		public:
-			static void Setup()
-			{
-				static sf::RenderWindow _window(sf::VideoMode(800, 600), "IEngine");
-			}
-		};
+		static sf::RenderWindow _window(sf::VideoMode(800, 600), "IEngine");
 	}
-}
+};

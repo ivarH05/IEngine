@@ -1,6 +1,6 @@
-#include <iostream>
+#pragma once
+
 #include "Application.h"
-using namespace IEngine::Core;
 
 int main(int argc, char* argv[])
 {

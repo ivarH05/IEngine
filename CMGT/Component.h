@@ -1,14 +1,9 @@
 #pragma once
+
 #include "Object.h"
 
-namespace IEngine
+class Component :
+	public Object
 {
-	namespace Core
-	{
-		class Component :
-			public Object
-		{
-		};
-	}
-}
+};
 
