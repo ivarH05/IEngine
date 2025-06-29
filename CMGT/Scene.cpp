@@ -6,7 +6,7 @@
 
 Scene::Scene() : GameObject(Pointer<ObjectHandler>())
 {
-
+    SceneManager::SetActiveScene(Pointer<Scene>(this));
 }
 
 void Scene::run()

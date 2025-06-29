@@ -60,7 +60,6 @@ public:
         static_assert(std::is_base_of<Object, T>::value, "Type must be an object");
         T* original = other.Get();
         other->FinalizeDestruction();
-        delete original;
     }
 };
 

@@ -4,8 +4,6 @@
 #include "Pointer.h"
 #include "Application.h"
 
-#include <iostream>
-
 void Object::FinalizeDestruction()
 {
     OnFinalizeDestruction();

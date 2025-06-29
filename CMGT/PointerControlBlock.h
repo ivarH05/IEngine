@@ -17,12 +17,20 @@ public:
     void ReleaseRef()
     {
         if (--ref_count <= 0 && object != nullptr)
+        {
             delete(object);
+            object = nullptr;
+        }
     }
 
     void OnObjectDestroyed()
     {
         object = nullptr;
         ref_count = 0;
+    }
+
+    ~ControlBlock()
+    {
+        OnObjectDestroyed();
     }
 };

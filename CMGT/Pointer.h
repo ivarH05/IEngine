@@ -117,8 +117,21 @@ public:
     {
         if (!_controlBlock || !_controlBlock->object)
             throw std::runtime_error("Object is null or has been destroyed");
-        else
-            return _controlBlock->object;
+
+        return _controlBlock->object;
+    }
+
+
+    bool operator==(std::nullptr_t) const
+    {
+        if (_controlBlock == nullptr)
+            return true;
+
+        return _controlBlock->object == nullptr;
+    }
+    bool operator!=(std::nullptr_t) const
+    {
+        return !(*this == nullptr);
     }
 
     bool operator==(const Pointer<T>& other) const
@@ -127,7 +140,7 @@ public:
     }
     bool operator!=(const Pointer<T>& other) const
     {
-        return _controlBlock != other._controlBlock;
+        return !(*this == other);
     }
 
     T* Get() const

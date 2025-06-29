@@ -2,12 +2,13 @@
 
 #include <functional>
 #include <algorithm>
-#include "Event.h"
 #include <type_traits>
 #include <unordered_map>
+#include <string>
+
+#include "Event.h"
 #include "Object.h";
 
-#include <string>
 
 /// <summary>
 /// ObjectHandler keeps track of all methods that should commonly be called during runtime

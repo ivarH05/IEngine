@@ -33,7 +33,6 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Main.h" />
-    <ClCompile Include="Component.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Graphics.h" />
     <ClCompile Include="Object.cpp" />

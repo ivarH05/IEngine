@@ -4,7 +4,6 @@
 
 template<typename T>
 class Pointer;
-
 class Scene;
 class Object;
 

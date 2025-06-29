@@ -1,17 +1,15 @@
 #pragma once
 #include "Scene.h"
-#include "Pointer.h"
+
+template<typename T>
+class Pointer;
 
 static class SceneManager
 {
 private:
 	static Pointer<Scene> _activeScene;
 public:
-	static Pointer<Scene> GetActiveScene() { return _activeScene; }
-	static void SetActiveScene(Pointer<Scene> scene) { _activeScene = scene; }
-
-	static Pointer<ObjectHandler> GetActiveObjectHandler() 
-	{
-		return _activeScene->objectHandler;
-	}
+	static void SetActiveScene(Pointer<Scene> scene);
+	static Pointer<Scene> GetActiveScene();
+	static Pointer<ObjectHandler> GetActiveObjectHandler();
 };

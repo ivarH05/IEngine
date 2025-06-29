@@ -13,17 +13,22 @@ private:
     friend class GameObject;
 };
 
-#define DESTRUCTABLE(ComponentType) \
+#define Script(name, base) \
+class name : public base \
+{ \
 public: \
-    void OnFinalizeDestruction() final override { \
-        if constexpr (has_OnDestroy<ComponentType>::value) { \
-            static_cast<ComponentType*>(this)->OnDestroy(); \
-        } \
+    void Register(Pointer<ObjectHandler> objectHandler) override \
+    { \
+        objectHandler->Register<name>(this); \
     } \
-    void Register(Pointer<ObjectHandler> objectHandler) override {\
-        objectHandler->Register<ComponentType>(this); \
-    }\
-    void Unregister(Pointer<ObjectHandler> objectHandler) override {\
-        objectHandler->Unregister<ComponentType>(this); \
+    void Unregister(Pointer<ObjectHandler> objectHandler) override \
+    { \
+        objectHandler->Unregister<name>(this); \
     }
 
+
+#define OnDestroy() \
+    OnFinalizeDestruction() override { \
+        OnDestroy(); \
+    } \
+    void OnDestroy()
