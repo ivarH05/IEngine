@@ -7,12 +7,34 @@
 class Object;
 
 template<typename T>
+class Pointer;
+
+template<typename To, typename From>
+Pointer<To> static_pointer_cast(const Pointer<From>& from)
+{
+    static_assert(std::is_base_of<Object, From>::value, "From must derive from Object");
+    static_assert(std::is_base_of<Object, To>::value, "To must derive from Object");
+
+    if (!from)
+        return Pointer<To>();
+
+    To* castedPtr = static_cast<To*>(from.Get());
+
+    Pointer<To> result;
+    result._controlBlock = reinterpret_cast<ControlBlock<To>*>(from._controlBlock);
+    result._controlBlock->AddRef();
+    return result;
+}
+
+template<typename T>
 class Pointer
 {
     static_assert(std::is_base_of<Object, T>::value,
         "T must be derived from Object");
 
 private:
+    template<typename To, typename From>
+    friend Pointer<To> static_pointer_cast(const Pointer<From>& from);
     ControlBlock<T>* _controlBlock = nullptr;
 
 public:
@@ -22,6 +44,8 @@ public:
         _controlBlock = new ControlBlock<T>(obj);
         obj->_controlBlock = reinterpret_cast<ControlBlock<Object>*>(_controlBlock);
     }
+
+    Pointer(std::nullptr_t) : _controlBlock(nullptr) { }
 
     explicit Pointer(T* p)
     {
@@ -35,16 +59,18 @@ public:
         }
         else
         {
-            _controlBlock = p->_controlBlock;
+            _controlBlock = reinterpret_cast<ControlBlock<T>*>(p->_controlBlock);
             _controlBlock->AddRef();
         }
     }
 
     Pointer(const Pointer<T>& other)
-        : _controlBlock(other._controlBlock)
     {
-        if (_controlBlock)
+        if (other._controlBlock)
+        {
+            _controlBlock = other._controlBlock;
             _controlBlock->AddRef();
+        }
     }
 
     Pointer(Pointer<T>&& other) noexcept
@@ -91,12 +117,17 @@ public:
     {
         if (!_controlBlock || !_controlBlock->object)
             throw std::runtime_error("Object is null or has been destroyed");
-        return _controlBlock->object;
+        else
+            return _controlBlock->object;
     }
 
     bool operator==(const Pointer<T>& other) const
     {
         return _controlBlock == other._controlBlock;
+    }
+    bool operator!=(const Pointer<T>& other) const
+    {
+        return _controlBlock != other._controlBlock;
     }
 
     T* Get() const
@@ -108,6 +139,13 @@ public:
     {
         return _controlBlock && _controlBlock->object;
     }
+
+    template<typename U>
+    Pointer<U> Cast() const
+    {
+        return static_pointer_cast<U>(*this);
+    }
+
 
     std::string ToString() const
     {

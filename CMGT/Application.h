@@ -16,7 +16,7 @@ private:
 	/// </summary>
 	static std::vector<Pointer<Object>> _deferredDestructionQueue;
 
-	static Scene _activeScene;
+	static Pointer<Scene> _activeScene;
 
 	/// <summary>
 	/// Actually destroy all objects that have been marked as destroyed

@@ -5,6 +5,7 @@
 class Scene : public GameObject
 {
 private:
+	friend class SceneManager;
 
 public:
 	/// <summary>

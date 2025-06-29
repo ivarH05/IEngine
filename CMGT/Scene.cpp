@@ -1,16 +1,18 @@
 #pragma once
 
 #include "Application.h"
-#include "Scene.h"
+#include "SceneManager.h"
 #include "Pointer.h"
 
-Scene::Scene()
+Scene::Scene() : GameObject(Pointer<ObjectHandler>())
 {
-    objectHandler = Pointer<ObjectHandler>();
+
 }
 
 void Scene::run()
 {
+    SceneManager::SetActiveScene(Pointer<Scene>(this));
+
     objectHandler->StartAll();
     objectHandler->FixedUpdateAll();
     objectHandler->UpdateAll();

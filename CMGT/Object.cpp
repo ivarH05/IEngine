@@ -11,8 +11,6 @@ void Object::FinalizeDestruction()
     OnFinalizeDestruction();
     if (_controlBlock)
         _controlBlock->OnObjectDestroyed();
-
-    delete this;
 }
 
 void Object::CueForDestruction()

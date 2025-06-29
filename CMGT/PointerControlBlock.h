@@ -16,12 +16,13 @@ public:
 
     void ReleaseRef()
     {
-        if (--ref_count == 0)
-            delete this;
+        if (--ref_count <= 0 && object != nullptr)
+            delete(object);
     }
 
     void OnObjectDestroyed()
     {
         object = nullptr;
+        ref_count = 0;
     }
 };

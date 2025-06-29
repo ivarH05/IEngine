@@ -50,6 +50,9 @@
       <Filter>IEngine\SceneManagement</Filter>
     </ClCompile>
     <ClCompile Include="ObjectHandler.cpp" />
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>IEngine\SceneManagement</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Object.h">
@@ -73,6 +76,9 @@
     <ClInclude Include="ObjectHandler.h" />
     <ClInclude Include="Event.h">
       <Filter>IEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>IEngine\SceneManagement</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

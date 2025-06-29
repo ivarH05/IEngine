@@ -27,6 +27,7 @@
     <ClInclude Include="PointerControlBlock.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="ObjectHandler.h" />
+    <ClInclude Include="SceneManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
@@ -39,6 +40,7 @@
     <ClCompile Include="Pointer.h" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="ObjectHandler.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

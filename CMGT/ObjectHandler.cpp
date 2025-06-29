@@ -3,6 +3,7 @@
 void ObjectHandler::StartAll()
 {
     onStart.Invoke();
+    onStart = Event<>();
 }
 
 void ObjectHandler::FixedUpdateAll()

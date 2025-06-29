@@ -2,13 +2,14 @@
 
 #include "Object.h"
 #include "ObjectHandler.h"
+#include "Pointer.h"
 
 class Component :
 	public Object
 {
 private:
-    virtual void Register(ObjectHandler* objectHandler) {};
-    virtual void Unregister(ObjectHandler* objectHandler) {};
+    virtual void Register(Pointer<ObjectHandler> objectHandler) {};
+    virtual void Unregister(Pointer<ObjectHandler> objectHandler) {};
     friend class GameObject;
 };
 
@@ -19,10 +20,10 @@ public: \
             static_cast<ComponentType*>(this)->OnDestroy(); \
         } \
     } \
-    void Register(ObjectHandler* objectHandler) override {\
+    void Register(Pointer<ObjectHandler> objectHandler) override {\
         objectHandler->Register<ComponentType>(this); \
     }\
-    void Unregister(ObjectHandler* objectHandler) override {\
+    void Unregister(Pointer<ObjectHandler> objectHandler) override {\
         objectHandler->Unregister<ComponentType>(this); \
     }
 
