@@ -20,14 +20,20 @@
     <Filter Include="IEngine\SceneManagement">
       <UniqueIdentifier>{93ecffe1-f387-4d7b-8e20-38d8a0f31831}</UniqueIdentifier>
     </Filter>
+    <Filter Include="IEngine\Components">
+      <UniqueIdentifier>{1518ee8a-34da-4958-a25b-cc7739ecebbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IEngine\Components\Graphics">
+      <UniqueIdentifier>{44f013af-2262-4c86-a20f-2fe1e9b7c051}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IEngine\MacroBehaviour">
+      <UniqueIdentifier>{d8cc355c-3283-458c-9e2d-b61dec8056c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IEngine\Core\Objects">
+      <UniqueIdentifier>{20b33b14-5674-4cf0-9d0b-a261cff9471f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Object.cpp">
-      <Filter>IEngine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>IEngine\Core</Filter>
-    </ClCompile>
     <ClCompile Include="Main.h">
       <Filter>IEngine</Filter>
     </ClCompile>
@@ -50,14 +56,17 @@
     <ClCompile Include="SceneManager.cpp">
       <Filter>IEngine\SceneManagement</Filter>
     </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>IEngine\Core\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>IEngine\Core\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugSerializables.h">
+      <Filter>IEngine\Core\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Object.h">
-      <Filter>IEngine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>IEngine\Core</Filter>
-    </ClInclude>
     <ClInclude Include="Application.h">
       <Filter>IEngine\Core</Filter>
     </ClInclude>
@@ -71,11 +80,24 @@
       <Filter>IEngine\SceneManagement</Filter>
     </ClInclude>
     <ClInclude Include="ObjectHandler.h" />
-    <ClInclude Include="Event.h">
-      <Filter>IEngine\Core</Filter>
-    </ClInclude>
     <ClInclude Include="SceneManager.h">
       <Filter>IEngine\SceneManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="FOREACH.h">
+      <Filter>IEngine\MacroBehaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonConverter.h" />
+    <ClInclude Include="Object.h">
+      <Filter>IEngine\Core\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="SerializableBehaviour.h">
+      <Filter>IEngine\Core\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>IEngine\Core\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>IEngine\Core\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
