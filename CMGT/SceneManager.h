@@ -4,7 +4,7 @@
 template<typename T>
 class Pointer;
 
-static class SceneManager
+class SceneManager
 {
 private:
 	static Pointer<Scene> _activeScene;

@@ -33,12 +33,6 @@ public: \
         FOREACH(DESERIALIZEVARIABLE, __VA_ARGS__) \
     }
 
-
-/// Create a new serialized object
-#define SerializableObject(name, ...) \
-class name : public __VA_ARGS__ \
-{ \
-
 class SerializableBehaviour : public Object
 {
 public:

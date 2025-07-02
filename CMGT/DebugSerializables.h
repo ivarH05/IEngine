@@ -1,15 +1,19 @@
 #pragma once
 #include "SerializableBehaviour.h"
 
-SerializableObject(NestedDebugObject, SerializableBehaviour)
-SerializeFields(debugInt, debugFloat)
-int debugInt = 3;
-float debugFloat = 4.5;
+class NestedDebugObject : public SerializableBehaviour 
+{
+	SerializeFields(debugInt, debugFloat)
+public:
+	int debugInt = 3;
+	float debugFloat = 4.5;
 
 };
 
-SerializableObject(DebugObject, SerializableBehaviour)
-SerializeFields(debugInt, nestedObject)
-int debugInt = 3;
-NestedDebugObject nestedObject;
+class DebugObject : public SerializableBehaviour 
+{
+	SerializeFields(debugInt, nestedObject)
+public:
+	int debugInt = 3;
+	NestedDebugObject nestedObject;
 };
