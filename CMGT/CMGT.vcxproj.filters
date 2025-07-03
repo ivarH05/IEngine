@@ -20,12 +20,6 @@
     <Filter Include="IEngine\SceneManagement">
       <UniqueIdentifier>{93ecffe1-f387-4d7b-8e20-38d8a0f31831}</UniqueIdentifier>
     </Filter>
-    <Filter Include="IEngine\Components">
-      <UniqueIdentifier>{1518ee8a-34da-4958-a25b-cc7739ecebbe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="IEngine\Components\Graphics">
-      <UniqueIdentifier>{44f013af-2262-4c86-a20f-2fe1e9b7c051}</UniqueIdentifier>
-    </Filter>
     <Filter Include="IEngine\MacroBehaviour">
       <UniqueIdentifier>{d8cc355c-3283-458c-9e2d-b61dec8056c3}</UniqueIdentifier>
     </Filter>
