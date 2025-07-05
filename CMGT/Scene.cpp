@@ -3,6 +3,7 @@
 #include "Application.h"
 #include "SceneManager.h"
 #include "Pointer.h"
+#include "Graphics.h"
 
 Scene::Scene() : GameObject(Pointer<ObjectHandler>())
 {
@@ -20,7 +21,7 @@ void Scene::run()
     objectHandler->RenderAll();
     objectHandler->DrawGizmosAll();
 
-    Graphics::Render();
+     Graphics::Render();
 
     // After full update, destroy all objects
     Application::DestroyPendingObjects();
