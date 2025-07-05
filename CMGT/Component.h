@@ -3,11 +3,22 @@
 #include "Object.h"
 #include "ObjectHandler.h"
 #include "Pointer.h"
+#include "GetSet.h"
+
+class GameObject;
+class Transform;
 
 class Component :
 	public Object
 {
+public:
+    Component();
+
+    GetSet<Pointer<GameObject>> gameObject;
+    GetSet<Pointer<Transform>> transform;
 private:
+    Pointer<GameObject> _gameObject = nullptr;
+    Pointer<Transform> _transform = nullptr;
     virtual void Register(Pointer<ObjectHandler> objectHandler) {};
     virtual void Unregister(Pointer<ObjectHandler> objectHandler) {};
     friend class GameObject;

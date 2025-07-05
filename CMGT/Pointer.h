@@ -29,9 +29,6 @@ Pointer<To> static_pointer_cast(const Pointer<From>& from)
 template<typename T>
 class Pointer
 {
-    static_assert(std::is_base_of<Object, T>::value,
-        "T must be derived from Object");
-
 private:
     template<typename To, typename From>
     friend Pointer<To> static_pointer_cast(const Pointer<From>& from);
@@ -174,10 +171,11 @@ public:
 
     void Reset()
     {
-        if (_controlBlock)
+        if (_controlBlock != nullptr)
         {
-            _controlBlock->ReleaseRef();
+            ControlBlock<T>* temp = _controlBlock;
             _controlBlock = nullptr;
+            temp->ReleaseRef();
         }
     }
 
@@ -186,3 +184,15 @@ public:
         Reset();
     }
 };
+
+template<typename T>
+bool operator==(std::nullptr_t lhs, const Pointer<T>& rhs)
+{
+    return rhs == nullptr;
+}
+
+template<typename T>
+bool operator!=(std::nullptr_t lhs, const Pointer<T>& rhs)
+{
+    return rhs != nullptr;
+}

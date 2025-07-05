@@ -3,8 +3,11 @@
 #include "Object.h"
 #include "Component.h"
 #include "Pointer.h"
+#include "GetSet.h"
 #include "ObjectHandler.h"
 #include <vector>
+
+class Transform;
 
 class GameObject :
 	public Object
@@ -12,13 +15,16 @@ class GameObject :
 private:
 	std::vector<Pointer<Component>> _components;
 	void OnFinalizeDestruction() final override;
+	void Setup();
 
 protected:
 	Pointer<ObjectHandler> objectHandler;
+	Pointer<Transform> _transform = nullptr;
 
 public:
 	GameObject();
 	GameObject(Pointer<ObjectHandler>);
+	GetSet<Pointer<Transform>> transform;
 
 	template<typename T>
 	Pointer<T> AddComponent();
@@ -36,13 +42,17 @@ Pointer<T> GameObject::AddComponent()
 	static_assert(std::is_base_of<Component, T>::value, "T must derive from Component");
 	Pointer<T> component;
 	Pointer<Component> ptr = component.Cast<Component>();
+
+	ptr->_gameObject = Pointer<GameObject>(this);
+	ptr->_transform = transform;
+
 	_components.push_back(ptr);
 
 	component->Register(objectHandler);
 
 	if constexpr (has_Awake<T>::value)
-		component
-		->Awake();
+		component->Awake();
+
 	return component;
 }
 

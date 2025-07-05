@@ -2,15 +2,35 @@
 
 #include "GameObject.h"
 #include "SceneManager.h"
+#include "Transform.h"
 
-GameObject::GameObject()
+
+GameObject::GameObject() :
+	transform([this]() -> Pointer<Transform> { return _transform; })
 {
 	objectHandler = SceneManager::GetActiveObjectHandler();
+	Setup();
 }
 
-GameObject::GameObject(Pointer<ObjectHandler> handler)
+GameObject::GameObject(Pointer<ObjectHandler> handler) :
+	transform([this]() -> Pointer<Transform> { return _transform; })
 {
 	objectHandler = handler;
+	Setup();
+}
+
+void GameObject::Setup()
+{
+	Pointer<Scene> activeScene = SceneManager::GetActiveScene();
+	_transform = AddComponent<Transform>();
+
+	if (!activeScene)
+		return;
+
+	if (activeScene->transform == _transform)
+		return;
+
+	activeScene->transform->AddChild(_transform);
 }
 
 void GameObject::OnFinalizeDestruction()

@@ -18,8 +18,9 @@ public:
     {
         if (--ref_count <= 0 && object != nullptr)
         {
-            delete(object);
+            T* temp = object;
             object = nullptr;
+            delete(object);
         }
     }
 
