@@ -21,6 +21,11 @@ void ObjectHandler::LateUpdateAll()
     onLateUpdate.Invoke();
 }
 
+void ObjectHandler::RenderAll()
+{
+    onRender.Invoke();
+}
+
 void ObjectHandler::DrawGizmosAll()
 {
     onDrawGizmos.Invoke();
