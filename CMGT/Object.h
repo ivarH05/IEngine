@@ -1,6 +1,7 @@
 #pragma once
 #include <type_traits>
 #include <typeinfo>
+#include "Debug.h"
 
 template<typename T>
 class ControlBlock;

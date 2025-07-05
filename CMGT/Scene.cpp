@@ -3,6 +3,7 @@
 #include "Application.h"
 #include "SceneManager.h"
 #include "Pointer.h"
+#include "Graphics.h"
 
 #include "DebugSerializables.h"
 #include <iostream>
@@ -30,7 +31,10 @@ void Scene::run()
     objectHandler->FixedUpdateAll();
     objectHandler->UpdateAll();
     objectHandler->LateUpdateAll();
+    objectHandler->RenderAll();
     objectHandler->DrawGizmosAll();
+
+     Graphics::Render();
 
     // After full update, destroy all objects
     Application::DestroyPendingObjects();

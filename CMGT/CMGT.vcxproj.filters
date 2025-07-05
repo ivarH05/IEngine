@@ -26,6 +26,18 @@
     <Filter Include="IEngine\Core\Objects">
       <UniqueIdentifier>{20b33b14-5674-4cf0-9d0b-a261cff9471f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="IEngine\Components">
+      <UniqueIdentifier>{7db909d3-ad37-4fca-a40b-3c16cd6b61c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IEngine\Components\Graphics">
+      <UniqueIdentifier>{f113919a-f544-4071-ae8b-6259475c478e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IEngine\DataTypes">
+      <UniqueIdentifier>{205f78b4-9b52-42b7-a9b6-b93bd5f9c661}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IEngine\Utils">
+      <UniqueIdentifier>{96e66f8c-d901-4055-b694-f76665325b8b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.h">
@@ -58,6 +70,9 @@
     </ClCompile>
     <ClCompile Include="DebugSerializables.h">
       <Filter>IEngine\Core\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug.cpp">
+      <Filter>IEngine\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +107,15 @@
     </ClInclude>
     <ClInclude Include="Event.h">
       <Filter>IEngine\Core\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteRenderer.h">
+      <Filter>IEngine\Components\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture2D.h">
+      <Filter>IEngine\DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Debug.h">
+      <Filter>IEngine\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

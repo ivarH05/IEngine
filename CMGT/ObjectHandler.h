@@ -4,10 +4,10 @@
 #include <algorithm>
 #include <type_traits>
 #include <unordered_map>
-#include <string>
 
 #include "Event.h"
 #include "Object.h";
+#include "Debug.h";
 
 
 /// <summary>
@@ -25,6 +25,7 @@ public:
     void FixedUpdateAll();
     void UpdateAll();
     void LateUpdateAll();
+    void RenderAll();
     void DrawGizmosAll();
 
 private:
@@ -34,6 +35,7 @@ private:
     Event<> onFixedUpdate;
     Event<> onUpdate;
     Event<> onLateUpdate;
+    Event<> onRender;
     Event<> onDrawGizmos;
 };
 
@@ -74,6 +76,7 @@ DEFINE_HAS_METHOD(Update);
 DEFINE_HAS_METHOD(Start);
 DEFINE_HAS_METHOD(FixedUpdate);
 DEFINE_HAS_METHOD(LateUpdate);
+DEFINE_HAS_METHOD(OnRender);
 DEFINE_HAS_METHOD(DrawGizmos);
 
 /*
@@ -85,7 +88,8 @@ DEFINE_HAS_METHOD(DrawGizmos);
 #define REGISTER_METHOD(MethodName, EventName)                           \
     if constexpr (has_##MethodName<T>::value) {                          \
         auto MethodName##_Delegate = [component](auto&&... args) {       \
-            component->MethodName(std::forward<decltype(args)>(args)...);\
+            try { component->MethodName(std::forward<decltype(args)>(args)...); } \
+            catch (const std::exception& e) { Debug::Log(string(e.what())); } \
         };                                                               \
         EventName.AddListener(MethodName##_Delegate);                   \
         _registeredDelegates[#MethodName] = MethodName##_Delegate;      \
@@ -107,6 +111,7 @@ void ObjectHandler::Register(T* component)
     REGISTER_METHOD(FixedUpdate, onFixedUpdate);
     REGISTER_METHOD(Update, onUpdate);
     REGISTER_METHOD(LateUpdate, onLateUpdate);
+    REGISTER_METHOD(OnRender, onRender);
     REGISTER_METHOD(DrawGizmos, onDrawGizmos);
 }
 
@@ -118,6 +123,7 @@ void ObjectHandler::Unregister(T* component)
     UNREGISTER_METHOD(FixedUpdate, onFixedUpdate);
     UNREGISTER_METHOD(Update, onUpdate);
     UNREGISTER_METHOD(LateUpdate, onLateUpdate);
+    UNREGISTER_METHOD(OnRender, onRender);
     UNREGISTER_METHOD(DrawGizmos, onDrawGizmos);
 
 }
