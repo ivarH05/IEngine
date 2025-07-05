@@ -21,7 +21,7 @@ void Scene::run()
     objectHandler->RenderAll();
     objectHandler->DrawGizmosAll();
 
-     Graphics::Render();
+    Graphics::Render();
 
     // After full update, destroy all objects
     Application::DestroyPendingObjects();

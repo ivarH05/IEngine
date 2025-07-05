@@ -13,8 +13,8 @@ private:
     friend class GameObject;
 };
 
-#define Script(name, base) \
-class name : public base \
+#define Script(name, ...) \
+class name : public __VA_ARGS__ \
 { \
 public: \
     void Register(Pointer<ObjectHandler> objectHandler) override \
