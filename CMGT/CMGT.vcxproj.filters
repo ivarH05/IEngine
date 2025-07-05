@@ -58,7 +58,6 @@
     <ClCompile Include="Scene.cpp">
       <Filter>IEngine\SceneManagement</Filter>
     </ClCompile>
-    <ClCompile Include="ObjectHandler.cpp" />
     <ClCompile Include="SceneManager.cpp">
       <Filter>IEngine\SceneManagement</Filter>
     </ClCompile>
@@ -68,11 +67,11 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>IEngine\Core\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="DebugSerializables.h">
-      <Filter>IEngine\Core\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="Debug.cpp">
       <Filter>IEngine\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectHandler.cpp">
+      <Filter>IEngine\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -88,14 +87,12 @@
     <ClInclude Include="Scene.h">
       <Filter>IEngine\SceneManagement</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectHandler.h" />
     <ClInclude Include="SceneManager.h">
       <Filter>IEngine\SceneManagement</Filter>
     </ClInclude>
     <ClInclude Include="FOREACH.h">
       <Filter>IEngine\MacroBehaviour</Filter>
     </ClInclude>
-    <ClInclude Include="JsonConverter.h" />
     <ClInclude Include="Object.h">
       <Filter>IEngine\Core\Objects</Filter>
     </ClInclude>
@@ -115,6 +112,12 @@
       <Filter>IEngine\DataTypes</Filter>
     </ClInclude>
     <ClInclude Include="Debug.h">
+      <Filter>IEngine\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectHandler.h">
+      <Filter>IEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonConverter.h">
       <Filter>IEngine\Utils</Filter>
     </ClInclude>
   </ItemGroup>

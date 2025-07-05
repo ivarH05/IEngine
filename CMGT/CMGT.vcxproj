@@ -38,7 +38,6 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Debug.cpp" />
-    <ClCompile Include="DebugSerializables.h" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Main.h" />
     <ClCompile Include="GameObject.cpp" />
