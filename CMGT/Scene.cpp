@@ -17,7 +17,10 @@ void Scene::run()
     objectHandler->FixedUpdateAll();
     objectHandler->UpdateAll();
     objectHandler->LateUpdateAll();
+    objectHandler->RenderAll();
     objectHandler->DrawGizmosAll();
+
+    Graphics::Render();
 
     // After full update, destroy all objects
     Application::DestroyPendingObjects();

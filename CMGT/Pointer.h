@@ -115,7 +115,7 @@ public:
 
     T* operator->() const
     {
-        if (!_controlBlock || !_controlBlock->object)
+        if (_controlBlock == nullptr || _controlBlock->object == nullptr)
             throw std::runtime_error("Object is null or has been destroyed");
 
         return _controlBlock->object;
