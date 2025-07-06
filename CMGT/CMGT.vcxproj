@@ -36,6 +36,7 @@
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="SerializableBehaviour.h" />
+    <ClInclude Include="Time.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
@@ -53,6 +54,7 @@
     <ClCompile Include="ObjectHandler.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
+    <ClCompile Include="Time.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Vector2.h" />
   </ItemGroup>
