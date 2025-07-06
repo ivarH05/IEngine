@@ -29,6 +29,7 @@
     <ClInclude Include="JsonConverter.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="PointerControlBlock.h" />
+    <ClInclude Include="Random.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="ObjectHandler.h" />
     <ClInclude Include="SceneManager.h" />
@@ -47,6 +48,7 @@
     <ClCompile Include="Graphics.h" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Pointer.h" />
+    <ClCompile Include="Random.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="ObjectHandler.cpp" />
     <ClCompile Include="SceneManager.cpp" />
