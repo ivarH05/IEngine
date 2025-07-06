@@ -97,6 +97,9 @@
     <ClCompile Include="Time.cpp">
       <Filter>IEngine\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>IEngine\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -154,6 +157,9 @@
       <Filter>IEngine\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Time.h">
+      <Filter>IEngine\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
       <Filter>IEngine\Utils</Filter>
     </ClInclude>
   </ItemGroup>

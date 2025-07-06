@@ -5,6 +5,7 @@
 #include "Pointer.h"
 #include "Graphics.h"
 #include "Time.h"
+#include "Input.h"
 
 Scene::Scene() : GameObject(Pointer<ObjectHandler>())
 {
@@ -16,6 +17,7 @@ void Scene::run()
     SceneManager::SetActiveScene(Pointer<Scene>(this));
 
     Time::Update();
+    Input::Update();
 
     objectHandler->StartAll();
     objectHandler->FixedUpdateAll();
