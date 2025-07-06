@@ -1,44 +1,37 @@
 #pragma once
 
 #include <functional>
-#include <vector>
+#include <unordered_map>
 #include <algorithm>
 
 template<typename... Args>
 class Event
 {
 public:
+    using ListenerID = size_t;
     using Listener = std::function<void(Args...)>;
 
-    void AddListener(const Listener& listener)
+    ListenerID AddListener(const Listener& listener)
     {
-        listeners.push_back(listener);
+        ListenerID id = nextListenerID++;
+        listeners[id] = listener;
+        return id;
     }
 
-    void RemoveListener(const Listener& listener)
+    void RemoveListener(ListenerID id)
     {
-        auto it = std::remove_if(listeners.begin(), listeners.end(),
-            [&](const Listener& l)  {  return CompareFunctions(l, listener); });
-        listeners.erase(it, listeners.end());
+        listeners.erase(id);
     }
 
     void Invoke(Args... args)
     {
-        for (auto& listener : listeners)
+        for (auto& [id, listener] : listeners)
         {
             listener(args...);
         }
     }
 
 private:
-    std::vector<Listener> listeners;
-
-    static bool CompareFunctions(const Listener& listernerA, const Listener& listenerB)
-    {
-        if(listernerA.target_type() == listenerB.target_type() &&
-            listernerA.template target<void(*)(Args...)>() == listenerB.template target<void(*)(Args...)>())
-
-        return listernerA.target_type() == listenerB.target_type() &&
-            listernerA.template target<void(*)(Args...)>() == listenerB.template target<void(*)(Args...)>();
-    }
+    std::unordered_map<ListenerID, Listener> listeners;
+    ListenerID nextListenerID = 0;
 };

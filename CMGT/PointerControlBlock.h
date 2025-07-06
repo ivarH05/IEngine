@@ -18,8 +18,9 @@ public:
     {
         if (--ref_count <= 0 && object != nullptr)
         {
-            delete(object);
+            T* temp = object;
             object = nullptr;
+            delete(object);
         }
     }
 
@@ -27,6 +28,8 @@ public:
     {
         object = nullptr;
         ref_count = 0;
+        if (object != nullptr)
+            delete(object);
     }
 
     ~ControlBlock()

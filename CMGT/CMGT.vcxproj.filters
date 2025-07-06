@@ -38,6 +38,12 @@
     <Filter Include="IEngine\Utils">
       <UniqueIdentifier>{96e66f8c-d901-4055-b694-f76665325b8b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="IEngine\Proxies">
+      <UniqueIdentifier>{68186281-ccec-41d7-be77-4fcaebf9270a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IEngine\Math">
+      <UniqueIdentifier>{64b7ef98-e826-4e02-b1fb-0087aaeaa97b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.h">
@@ -73,6 +79,18 @@
     <ClCompile Include="ObjectHandler.cpp">
       <Filter>IEngine\Core</Filter>
     </ClCompile>
+    <ClCompile Include="SpriteRenderer.cpp">
+      <Filter>IEngine\Components\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>IEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>IEngine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2.h">
+      <Filter>IEngine\Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -102,9 +120,6 @@
     <ClInclude Include="GameObject.h">
       <Filter>IEngine\Core\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Event.h">
-      <Filter>IEngine\Core\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="SpriteRenderer.h">
       <Filter>IEngine\Components\Graphics</Filter>
     </ClInclude>
@@ -119,6 +134,15 @@
     </ClInclude>
     <ClInclude Include="JsonConverter.h">
       <Filter>IEngine\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>IEngine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GetSet.h">
+      <Filter>IEngine\Proxies</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>IEngine\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

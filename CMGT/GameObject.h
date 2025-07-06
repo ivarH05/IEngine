@@ -3,8 +3,11 @@
 #include "Object.h"
 #include "Component.h"
 #include "Pointer.h"
+#include "GetSet.h"
 #include "ObjectHandler.h"
 #include <vector>
+
+class Transform;
 
 class GameObject :
 	public Object
@@ -12,13 +15,16 @@ class GameObject :
 private:
 	std::vector<Pointer<Component>> _components;
 	void OnFinalizeDestruction() final override;
+	void Setup();
 
 protected:
 	Pointer<ObjectHandler> objectHandler;
+	Pointer<Transform> _transform = nullptr;
 
 public:
 	GameObject();
 	GameObject(Pointer<ObjectHandler>);
+	GetSet<Pointer<Transform>> transform;
 
 	template<typename T>
 	Pointer<T> AddComponent();
@@ -33,16 +39,21 @@ public:
 template<typename T>
 Pointer<T> GameObject::AddComponent()
 {
+	static_assert(!std::is_abstract<T>::value, "Type cannot be abstract");
 	static_assert(std::is_base_of<Component, T>::value, "T must derive from Component");
 	Pointer<T> component;
 	Pointer<Component> ptr = component.Cast<Component>();
+
+	ptr->_gameObject = Pointer<GameObject>(this);
+	ptr->_transform = transform;
+
 	_components.push_back(ptr);
 
 	component->Register(objectHandler);
 
 	if constexpr (has_Awake<T>::value)
-		component
-		->Awake();
+		component->Awake();
+
 	return component;
 }
 
@@ -62,7 +73,7 @@ Pointer<T> GameObject::GetComponent()
 template<typename T>
 std::vector<Component> GameObject::GetComponents()
 {
-	std::vector<Component> result = new std::vector<Component>();
+	std::vector<Component> result = std::vector<Component>();
 	for (int i = 0; i < _components.size(); i++)
 	{
 		Pointer<Component> c = _components[i];

@@ -4,10 +4,34 @@
 #include <algorithm>
 #include <type_traits>
 #include <unordered_map>
+#include <string>
 
 #include "Event.h"
 #include "Object.h";
 #include "Debug.h";
+
+struct ListenerKey
+{
+    std::size_t id;
+    std::string method;
+
+    bool operator==(const ListenerKey& other) const
+    {
+        return id == other.id && method == other.method;
+    }
+};
+
+namespace std
+{
+    template<>
+    struct hash<ListenerKey>
+    {
+        std::size_t operator()(const ListenerKey& k) const
+        {
+            return std::hash<std::size_t>()(k.id) ^ (std::hash<std::string>()(k.method) << 1);
+        }
+    };
+}
 
 
 /// <summary>
@@ -29,7 +53,11 @@ public:
     void DrawGizmosAll();
 
 private:
-    std::unordered_map<std::string, std::function<void()>> _registeredDelegates = std::unordered_map<std::string, std::function<void()>>();
+
+    void OnFinalizeDestruction() override {}
+    std::unordered_map<ListenerKey, size_t> _registeredDelegates;
+
+
 
     Event<> onStart;
     Event<> onFixedUpdate;
@@ -85,21 +113,26 @@ DEFINE_HAS_METHOD(DrawGizmos);
 * It uses Has_[MethodName] to check if the component has the specified method,
 * if so, it should add it to the list [listName]. 
 */
-#define REGISTER_METHOD(MethodName, EventName)                           \
-    if constexpr (has_##MethodName<T>::value) {                          \
-        auto MethodName##_Delegate = [component](auto&&... args) {       \
+#define REGISTER_METHOD(MethodName, EventName)                                 \
+    if constexpr (has_##MethodName<T>::value) {                                \
+        auto MethodName##_Delegate = [component](auto&&... args) {             \
             try { component->MethodName(std::forward<decltype(args)>(args)...); } \
-            catch (const std::exception& e) { Debug::Log(string(e.what())); } \
-        };                                                               \
-        EventName.AddListener(MethodName##_Delegate);                   \
-        _registeredDelegates[#MethodName] = MethodName##_Delegate;      \
+            catch (const std::exception& e) { Debug::Log(std::string(e.what())); } \
+        };                                                                     \
+        auto listenerID = EventName.AddListener(MethodName##_Delegate);        \
+        _registeredDelegates[{component->GetID(), #MethodName}] = listenerID;  \
     }
 
-#define UNREGISTER_METHOD(MethodName, EventName)                         \
-    if constexpr (has_##MethodName<T>::value) {                          \
-        EventName.RemoveListener(_registeredDelegates[#MethodName]);    \
-        _registeredDelegates.erase(#MethodName);                         \
+#define UNREGISTER_METHOD(MethodName, EventName)                               \
+    if constexpr (has_##MethodName<T>::value) {                                \
+        ListenerKey key{ component->GetID(), #MethodName };                    \
+        auto it = _registeredDelegates.find(key);                              \
+        if (it != _registeredDelegates.end()) {                                \
+            EventName.RemoveListener(it->second);                              \
+            _registeredDelegates.erase(it);                                    \
+        }                                                                      \
     }
+
 
 
 // On register, check all methods and if it has a method, make sure it would be called during the next loop
@@ -123,7 +156,14 @@ void ObjectHandler::Unregister(T* component)
     UNREGISTER_METHOD(FixedUpdate, onFixedUpdate);
     UNREGISTER_METHOD(Update, onUpdate);
     UNREGISTER_METHOD(LateUpdate, onLateUpdate);
-    UNREGISTER_METHOD(OnRender, onRender);
+    if constexpr (has_OnRender<T>::value)
+    {
+        ListenerKey key{ component->GetID(), "OnRender" }; auto it = _registeredDelegates.find(key); if (it != _registeredDelegates.end())
+        {
+            onRender.RemoveListener(it->second); 
+            _registeredDelegates.erase(it);
+        }
+    };
     UNREGISTER_METHOD(DrawGizmos, onDrawGizmos);
 
 }
