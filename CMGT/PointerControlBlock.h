@@ -28,6 +28,8 @@ public:
     {
         object = nullptr;
         ref_count = 0;
+        if (object != nullptr)
+            delete(object);
     }
 
     ~ControlBlock()

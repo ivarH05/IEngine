@@ -16,7 +16,7 @@ private:
     /// Destroy the object, break Pointer<T> references
     /// </summary>
     void FinalizeDestruction();
-    virtual void OnFinalizeDestruction() {  };
+    virtual void OnFinalizeDestruction() {};
 
     /// <summary>
     /// Cue the object for destruction, will be destroyed after this frame
@@ -31,8 +31,12 @@ private:
     template<typename T>
     friend class Pointer;
 
+    std::size_t id;
+    static inline long globalIdCounter = 0;
 
 public:
+    Object() : id(++globalIdCounter) {}
+    std::size_t GetID() const { return id; }
     /// <summary>
     /// Reference to the control_block keeping track of the pointers, avoids memory leaks when destroying an object
     /// </summary>
@@ -61,6 +65,7 @@ public:
         static_assert(std::is_base_of<Object, T>::value, "Type must be an object");
         T* original = other.Get();
         other->FinalizeDestruction();
+        delete original;
     }
 };
 

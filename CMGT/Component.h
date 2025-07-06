@@ -16,11 +16,19 @@ public:
 
     GetSet<Pointer<GameObject>> gameObject;
     GetSet<Pointer<Transform>> transform;
+protected:
+    Pointer<ObjectHandler> objectHandler;
 private:
+    void OnFinalizeDestruction() override 
+    { 
+        Unregister(objectHandler); 
+        _transform = nullptr; 
+        _gameObject = nullptr;
+    }
     Pointer<GameObject> _gameObject = nullptr;
     Pointer<Transform> _transform = nullptr;
-    virtual void Register(Pointer<ObjectHandler> objectHandler) {};
-    virtual void Unregister(Pointer<ObjectHandler> objectHandler) {};
+    virtual void Register(Pointer<ObjectHandler> objectHandler) { };
+    virtual void Unregister(Pointer<ObjectHandler> objectHandler) { };
     friend class GameObject;
 };
 
@@ -30,6 +38,7 @@ class name : public __VA_ARGS__ \
 public: \
     void Register(Pointer<ObjectHandler> objectHandler) override \
     { \
+        this->objectHandler = objectHandler; \
         objectHandler->Register<name>(this); \
     } \
     void Unregister(Pointer<ObjectHandler> objectHandler) override \
@@ -40,6 +49,7 @@ public: \
 
 #define OnDestroy() \
     OnFinalizeDestruction() override { \
+        Unregister(objectHandler); \
         OnDestroy(); \
     } \
     void OnDestroy()

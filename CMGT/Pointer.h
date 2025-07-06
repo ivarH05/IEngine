@@ -37,6 +37,7 @@ private:
 public:
     Pointer()
     {
+        static_assert(!std::is_abstract<T>::value, "Type cannot be abstract");
         T* obj = new T();
         _controlBlock = new ControlBlock<T>(obj);
         obj->_controlBlock = reinterpret_cast<ControlBlock<Object>*>(_controlBlock);

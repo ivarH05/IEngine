@@ -54,18 +54,20 @@ public:
 	{ }
 
 	Pointer<Transform> AddChild(Pointer<Transform> newChild);
+	Pointer<GameObject> AddChild(Pointer<GameObject> newChild);
 	void RemoveChild(Pointer<Transform> child);
 
 	Pointer<Transform> GetParent() { return _parent; }
+	void SetParent(Pointer<Transform> newParent);
+
+	Pointer<Transform> GetChild(int index) { return _children[index]; }
+	int ChildCount() { return _children.size(); }
 
 private:
 
 	// Helper methods
 
 	void RecursiveDirtyFlag(bool pos, bool rot, bool sca);
-
-	void SetParent(Pointer<Transform> newParent);
-
 	void ClearParent();
 
 	// Getters and Setters

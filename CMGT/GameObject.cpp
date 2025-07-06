@@ -35,12 +35,17 @@ void GameObject::Setup()
 
 void GameObject::OnFinalizeDestruction()
 {
-	for (int i = 0; i < _components.size(); i++)
+	while (transform->ChildCount() > 0)
+		DestroyImmediate(transform->GetChild(0)->gameObject.Get());
+
+	for (int i = 1; i < _components.size(); i++)
 	{
 		Pointer<Component> component = _components[i];
 		if (component == nullptr)
 			continue;
-		component->Unregister(objectHandler);
 		DestroyImmediate(component);
 	}
+
+	transform->SetParent(nullptr);
+	DestroyImmediate(transform.Get());
 }

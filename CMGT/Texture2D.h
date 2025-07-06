@@ -3,6 +3,7 @@
 #include <string>
 #include "Object.h"
 #include "Vector2.h"
+#include "Pointer.h"
 
 class Texture2D : public Object
 {
@@ -11,6 +12,14 @@ private:
 
 public:
     Vector2 resolution = Vector2(0, 0);
+
+    static Pointer<Texture2D> LoadStatic(const std::string& path)
+    {
+        Pointer<Texture2D> result;
+        result->LoadTexture(path);
+
+        return result;
+    }
 
     Texture2D() { }
 

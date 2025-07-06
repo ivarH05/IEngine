@@ -120,9 +120,6 @@
     <ClInclude Include="GameObject.h">
       <Filter>IEngine\Core\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Event.h">
-      <Filter>IEngine\Core\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="SpriteRenderer.h">
       <Filter>IEngine\Components\Graphics</Filter>
     </ClInclude>
@@ -143,6 +140,9 @@
     </ClInclude>
     <ClInclude Include="GetSet.h">
       <Filter>IEngine\Proxies</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>IEngine\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

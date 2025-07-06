@@ -39,6 +39,7 @@ public:
 template<typename T>
 Pointer<T> GameObject::AddComponent()
 {
+	static_assert(!std::is_abstract<T>::value, "Type cannot be abstract");
 	static_assert(std::is_base_of<Component, T>::value, "T must derive from Component");
 	Pointer<T> component;
 	Pointer<Component> ptr = component.Cast<Component>();
@@ -72,7 +73,7 @@ Pointer<T> GameObject::GetComponent()
 template<typename T>
 std::vector<Component> GameObject::GetComponents()
 {
-	std::vector<Component> result = new std::vector<Component>();
+	std::vector<Component> result = std::vector<Component>();
 	for (int i = 0; i < _components.size(); i++)
 	{
 		Pointer<Component> c = _components[i];

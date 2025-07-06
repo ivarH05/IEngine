@@ -3,6 +3,7 @@
 
 
 Pointer<Transform> Transform::AddChild(Pointer<Transform> newChild) { newChild->SetParent(Pointer<Transform>(this)); return newChild; }
+Pointer<GameObject> Transform::AddChild(Pointer<GameObject> newChild) { newChild->transform->SetParent(Pointer<Transform>(this)); return newChild; }
 void Transform::RemoveChild(Pointer<Transform> child) { child->ClearParent(); }
 
 void Transform::SetParent(Pointer<Transform> newParent)
@@ -10,8 +11,14 @@ void Transform::SetParent(Pointer<Transform> newParent)
     ClearParent();
     if (newParent != nullptr)
         newParent->_children.push_back(Pointer(this));
-    
+
+    getPosition();
+    getRotation();
+    getScale();
     _parent = newParent;
+    _dfLocalPosition = true;
+    _dfLocalRotation = true;
+    _dfLocalScale = true;
 }
 
 void Transform::ClearParent()
@@ -52,7 +59,11 @@ void Transform::RecursiveDirtyFlag(bool pos, bool rot, bool sca)
     }
 
     for (int i = 0; i < _children.size(); i++)
+    {
+        if (_children[i] == nullptr)
+            continue;
         _children[i]->RecursiveDirtyFlag(pos, rot, sca);
+    }
 }
 
 ///// position

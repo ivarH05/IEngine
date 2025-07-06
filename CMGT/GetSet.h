@@ -88,6 +88,11 @@ public:
         return other;
     }
 
+    T Get()
+    {
+        return getMethod();
+    }
+
 private:
     std::function<T()> getMethod;
     std::function<void(const T&)> setMethod;
