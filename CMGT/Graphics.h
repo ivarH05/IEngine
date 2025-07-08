@@ -1,21 +1,17 @@
 #pragma once
-#include <iostream>
+
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <vector>
 
-namespace IEngine
+class Graphics
 {
-	namespace Core
-	{
-		class Graphics
-		{
-		private:
-			static sf::Window _window;
-		public:
-			static void Setup()
-			{
-				static sf::RenderWindow _window(sf::VideoMode(800, 600), "IEngine");
-			}
-		};
-	}
-}
+private:
+	static sf::RenderWindow _window;
+
+	static std::vector<sf::Sprite*> _renderQueue;
+
+public:
+	static void Render();
+	static void QueueForRendering(sf::Sprite* sprite);
+};
