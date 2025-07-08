@@ -10,3 +10,14 @@ Component::Component() :
 {
 
 }
+
+void Component::OnFinalizeDestruction()
+{
+    if (_gameObject != nullptr)
+        _gameObject->RemoveComponent<Component>(Pointer(this));
+
+    if (objectHandler != nullptr)
+        Unregister(objectHandler);
+    _transform = nullptr;
+    _gameObject = nullptr;
+}

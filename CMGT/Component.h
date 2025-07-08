@@ -17,14 +17,10 @@ public:
     GetSet<Pointer<GameObject>> gameObject;
     GetSet<Pointer<Transform>> transform;
 protected:
-    Pointer<ObjectHandler> objectHandler;
+    Pointer<ObjectHandler> objectHandler = nullptr;
 private:
-    void OnFinalizeDestruction() override 
-    { 
-        Unregister(objectHandler); 
-        _transform = nullptr; 
-        _gameObject = nullptr;
-    }
+    void OnFinalizeDestruction() override;
+
     Pointer<GameObject> _gameObject = nullptr;
     Pointer<Transform> _transform = nullptr;
     virtual void Register(Pointer<ObjectHandler> objectHandler) { };

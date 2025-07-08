@@ -16,24 +16,27 @@ public:
 
     void ReleaseRef()
     {
-        if (--ref_count <= 0 && object != nullptr)
+        if (--ref_count <= 0)
         {
-            T* temp = object;
-            object = nullptr;
-            delete(object);
+            if (object != nullptr)
+            {
+                T* temp = object;
+                object = nullptr;
+                delete(object);
+            }
+            delete(this);
         }
     }
 
     void OnObjectDestroyed()
     {
         object = nullptr;
-        ref_count = 0;
-        if (object != nullptr)
-            delete(object);
     }
 
     ~ControlBlock()
     {
         OnObjectDestroyed();
+        if (object != nullptr)
+            delete(object);
     }
 };

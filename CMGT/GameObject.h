@@ -17,8 +17,13 @@ private:
 	void OnFinalizeDestruction() final override;
 	void Setup();
 
+	template<typename T>
+	void RemoveComponent(Pointer<T> component);
+
+	friend class Component;
+
 protected:
-	Pointer<ObjectHandler> objectHandler;
+	Pointer<ObjectHandler> objectHandler = nullptr;
 	Pointer<Transform> _transform = nullptr;
 
 public:
@@ -35,6 +40,21 @@ public:
 	template<typename T>
 	std::vector<Component> GetComponents();
 };
+
+template<typename T>
+void GameObject::RemoveComponent(Pointer<T> component)
+{
+	static_assert(std::is_base_of<Component, T>::value, "T must derive from Component");
+	for (auto it = _components.begin(); it != _components.end(); ++it)
+	{
+		if (*it != component)
+			continue;
+
+		_components.erase(it);
+		break;
+	}
+}
+
 
 template<typename T>
 Pointer<T> GameObject::AddComponent()
