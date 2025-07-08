@@ -7,11 +7,15 @@
 void Object::FinalizeDestruction()
 {
     OnFinalizeDestruction();
-    if (_controlBlock)
-        _controlBlock->OnObjectDestroyed();
 }
 
 void Object::CueForDestruction()
 {
     Application::QueueNewDestructable(Pointer<Object>(this));
+}
+
+Object::~Object()
+{
+    if (_controlBlock != nullptr)
+        _controlBlock->OnObjectDestroyed();
 }

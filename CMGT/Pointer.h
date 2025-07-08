@@ -20,7 +20,7 @@ Pointer<To> static_pointer_cast(const Pointer<From>& from)
 
     To* castedPtr = static_cast<To*>(from.Get());
 
-    Pointer<To> result;
+    Pointer<To> result = nullptr;
     result._controlBlock = reinterpret_cast<ControlBlock<To>*>(from._controlBlock);
     result._controlBlock->AddRef();
     return result;
@@ -45,7 +45,7 @@ public:
 
     Pointer(std::nullptr_t) : _controlBlock(nullptr) { }
 
-    explicit Pointer(T* p)
+    Pointer(T* p)
     {
         if (!p)
             return;
@@ -75,6 +75,20 @@ public:
         : _controlBlock(other._controlBlock)
     {
         other._controlBlock = nullptr;
+    }
+
+    Pointer& operator=(const T other)
+    {
+        if (_controlBlock != nullptr && _controlBlock->object != &other)
+        {
+            if (_controlBlock)
+                _controlBlock->ReleaseRef();
+
+            _controlBlock = other._controlBlock;
+            if (_controlBlock)
+                _controlBlock->AddRef();
+        }
+        return *this;
     }
 
     Pointer& operator=(const Pointer<T>& other)
@@ -141,6 +155,19 @@ public:
         return !(*this == other);
     }
 
+    bool operator==(const T& other) const
+    {
+        if (_controlBlock == nullptr)
+            return false;
+        return _controlBlock->object == other;
+    }
+    bool operator!=(const T& other) const
+    {
+        if (_controlBlock == nullptr)
+            return false;
+        return !(_controlBlock->object == other);
+    }
+
     T* Get() const
     {
         return (_controlBlock) ? _controlBlock->object : nullptr;
@@ -174,9 +201,8 @@ public:
     {
         if (_controlBlock != nullptr)
         {
-            ControlBlock<T>* temp = _controlBlock;
+            _controlBlock->ReleaseRef();
             _controlBlock = nullptr;
-            temp->ReleaseRef();
         }
     }
 
