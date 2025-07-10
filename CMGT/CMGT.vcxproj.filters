@@ -88,9 +88,6 @@
     <ClCompile Include="Transform.cpp">
       <Filter>IEngine\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Vector2.h">
-      <Filter>IEngine\Math</Filter>
-    </ClCompile>
     <ClCompile Include="Random.cpp">
       <Filter>IEngine\Utils</Filter>
     </ClCompile>
@@ -99,6 +96,12 @@
     </ClCompile>
     <ClCompile Include="Input.cpp">
       <Filter>IEngine\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2.h">
+      <Filter>IEngine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3.h">
+      <Filter>IEngine\Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +164,18 @@
     </ClInclude>
     <ClInclude Include="Input.h">
       <Filter>IEngine\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Mathf.h">
+      <Filter>IEngine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix3x3.h">
+      <Filter>IEngine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix4x4.h">
+      <Filter>IEngine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Quaternion.h">
+      <Filter>IEngine\Math</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
