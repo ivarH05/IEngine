@@ -29,6 +29,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="JsonConverter.h" />
     <ClInclude Include="Mathf.h" />
+    <ClInclude Include="Matrix2x2.h" />
     <ClInclude Include="Matrix3x3.h" />
     <ClInclude Include="Matrix4x4.h" />
     <ClInclude Include="Object.h" />
@@ -43,6 +44,7 @@
     <ClInclude Include="SerializableBehaviour.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="Vector4.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
